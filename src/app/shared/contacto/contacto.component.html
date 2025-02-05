@@ -1,0 +1,9 @@
+<h4>{{ title }}</h4>
+<ul class="list-unstyled">
+  @for (media of socialMedia; track media.id) {
+    <li><a href="#" class="text-white">{{ media.name }}</a></li>
+  } @empty {
+    <li><a class="text-white">Sorry We lost our social media</a></li>
+  }
+</ul>
+
