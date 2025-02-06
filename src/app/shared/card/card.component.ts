@@ -1,21 +1,38 @@
-import { Component } from '@angular/core';
+import {Component, Input, ViewChild} from '@angular/core';
+import {Foto} from '../../interfaz/foto';
+import {RecursosService} from '../../servicios/recursos.service';
+import {HttpClientModule} from '@angular/common/http';
 
-export interface Card{
+export interface Card {
   id: number;
   svg: string;
   description: string;
   buttonOne: string,
-  buttonTwo:string,
+  buttonTwo: string,
   time: string;
 }
 
 @Component({
   selector: 'app-card',
   imports: [],
+  providers: [RecursosService],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
 export class CardComponent {
+
+  fotos: Foto[] = [];
+
+  constructor(
+    private service: RecursosService,
+  ) {
+    this.service.obtenerDatos().subscribe(
+      respuesta => {
+        this.fotos = respuesta as Foto[];
+      }
+    );
+
+  }
 
   cards: Card[] = [
     {
@@ -91,5 +108,4 @@ export class CardComponent {
       time: "20 mins",
     }
   ];
-
 }
