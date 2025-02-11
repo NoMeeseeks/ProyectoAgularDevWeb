@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, RouterLink} from '@angular/router';
 import {RecursosService} from '../../servicios/recursos.service';
 import {Posts} from '../../interfaz/posts';
@@ -8,12 +8,13 @@ import {Posts} from '../../interfaz/posts';
   imports: [
     RouterLink
   ],
+  providers: [RecursosService],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.css'
 })
 export class DetailComponent {
 
-  id:number = 0;
+  id: number = 0;
 
   post: Posts | undefined;
 
@@ -27,8 +28,8 @@ export class DetailComponent {
       console.log(this.id); // Mostrar el id procesado
     });
 
-    this.service.obtenerDetallePosts(this.id).subscribe(details =>{
-        this.post = details as Posts;
+    this.service.obtenerDetallePosts(this.id).subscribe(details => {
+      this.post = details as Posts;
     })
 
   }
